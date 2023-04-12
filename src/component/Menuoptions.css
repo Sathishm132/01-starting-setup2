@@ -1,0 +1,32 @@
+.menuoption{
+    display: flex;
+    text-align: center;
+    
+    background-color: ghostwhite;
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+    padding-top: 4px;
+    
+    height: 40px;
+    margin-top: 1rem;
+}
+
+.menuoption:hover{
+    background-color: rgb(19, 138, 212);
+}
+h4 {
+   
+   margin-left: 14px;
+
+
+}
+p{
+    margin-right: 1rem;
+    padding-top: 5px;
+  
+    display: inline;
+}
+i{
+    padding-top: 5px;
+    margin-left: 1rem;
+}

@@ -1,0 +1,15 @@
+.emailcard{
+ 
+   
+    padding: 0%;
+    box-sizing: border-box;
+    border-color: black;
+    border-bottom: 1px solid gray;
+  
+    width: 100%;
+
+}
+.emailcard:hover{
+    background-color:whitesmoke;
+    box-shadow: 10px;
+}

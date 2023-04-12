@@ -1,0 +1,11 @@
+.emaillist{
+
+
+    border-radius: 1rem;
+    margin: 1rem;
+   
+   width: 100%;
+  
+overflow:auto;
+   background-color: ghostwhite
+}

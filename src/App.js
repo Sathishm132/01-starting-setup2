@@ -1,9 +1,33 @@
-import ExpenseItems from "./component/ExpenseItems";
+import { createBrowserRouter, RouterProvider, useParams } from "react-router-dom";
+import ComposeMail from "./component/ComposeMail";
+import ReadMail from "./component/ReadMail";
+import Inbox from "./Routerpages/Inbox";
+
+
+
 function App() {
+  let {id}=useParams()
+  const router=createBrowserRouter([
+    {
+      path:"/",
+      element:<Inbox/>
+    },
+    {
+      path:"/ComposeMail",
+      element:<ComposeMail/>
+    },{
+      path:":id",
+      element:<ReadMail/>
+    }
+
+  ])
+  
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <ExpenseItems></ExpenseItems>
+    
+      <RouterProvider router={router}>
+
+      </RouterProvider>
     </div>
   );
 }

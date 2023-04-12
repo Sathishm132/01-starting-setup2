@@ -21,6 +21,22 @@ const Inbox = () => {
        
        
     fetch()
+    setInterval(()=>{
+      const fetch=async()=>{
+        const response= await axios.get("https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/mail.json")
+      let fetchdata=[]
+      for(let key in response.data){
+         fetchdata.push({...response.data[key],id:key})
+    
+         }
+         dispatch(mailaction.repalcemail(fetchdata))
+        }
+         
+         
+      fetch()
+    
+    },20000)
+    
   },[])
   return (
     <>

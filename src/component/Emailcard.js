@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { mailaction } from '../Store/MailSlice'
 
 const Emailcard = (props) => {
-  const inbox=useSelector(state=>state.inboxmail)
+  const inbox=useSelector(state=>state.inboxmail);
+  
+  let me=props.email.replace(/[^a-zA-Z ]/g, "");
   let updatedinbox=[...inbox]
   const dispatch=useDispatch()
   
@@ -16,14 +18,15 @@ const Emailcard = (props) => {
   const deletehandler=()=>{
    updatedinbox=updatedinbox.filter(item=>item.id!==props.id)
     dispatch(mailaction.repalcemail(updatedinbox))
-    axios.delete(`https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/mail/${props.id}.json`)
+    axios.delete(`https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/${me}/${props.id}.json`)
+    axios.delete()
   }
   const clickhandler=()=>{
     const element=inbox.find(item=>item.id===props.id)
   const index=inbox.findIndex(item=>item.id===props.id)
   let updateditem={...element,read:true}
   updatedinbox[index]=updateditem
-    axios.put(`https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/mail/${props.id}.json`,updateditem)
+    axios.put(`https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/${me}/${props.id}.json`,updateditem)
     dispatch(mailaction.repalcemail(updatedinbox))
     console.log(updatedinbox)
 

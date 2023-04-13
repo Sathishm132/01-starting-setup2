@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 
 const ComposeMail = () => {
   const navigate=useNavigate()
+ 
 
  let editorState = EditorState.createEmpty();
   const [description, setDescription] = useState(editorState);
@@ -26,7 +27,9 @@ const ComposeMail = () => {
       read:false
     
     }
-    axios.post("https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/mail.json",draft).then(()=>{
+    const sendmail=draft.mail.replace(/[^a-zA-Z ]/g, "")
+    axios.post(`https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/${sendmail}.json`,draft).then(()=>{
+      axios.post(`https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/sendmail.json`,draft)
       navigate("/")
     })
 }
@@ -36,6 +39,7 @@ const ComposeMail = () => {
   <InputGroup size="sm" className="mb-3 mt-5">
     <InputGroup.Text id="inputGroup-sizing-sm">To</InputGroup.Text>
     <Form.Control required
+    type='email'
      ref={email}
       aria-label="To"
       aria-describedby="inputGroup-sizing-sm"

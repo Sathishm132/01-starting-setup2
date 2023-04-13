@@ -1,47 +1,48 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
+
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import EmailList from '../component/EmailList'
 import MailNavbar from '../component/MailNavbar'
 import SideMenu from '../component/SideMenu'
+import Request from '../hooks/Request'
 import { mailaction } from '../Store/MailSlice'
 
 const Inbox = () => {
   const dispatch=useDispatch();
-  useEffect(()=>{
-    const fetch=async()=>{
-      const response= await axios.get("https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/mail.json")
-    let fetchdata=[]
-    for(let key in response.data){
-       fetchdata.push({...response.data[key],id:key})
+  const me=localStorage.getItem("email").replace(/[^a-zA-Z ]/g, "");
+  const[data,setData]=useState([])
+ 
   
-       }
-       dispatch(mailaction.repalcemail(fetchdata))
-      }
-       
-       
+  const mydata=(taskobg)=>{
+    let fetchdata=[]
+        for(let key in taskobg){
+           fetchdata.push({...taskobg[key],id:key})
+      
+           }
+           dispatch(mailaction.repalcemail(fetchdata));
+  }
+  const {fetch}=Request({method:"get",directory:me,},mydata);
+
+  
+  useEffect(()=>{
+   
+    
+   
     fetch()
+   
+    console.log(data)
     setInterval(()=>{
-      const fetch=async()=>{
-        const response= await axios.get("https://crud-12e65-default-rtdb.asia-southeast1.firebasedatabase.app/mail.json")
-      let fetchdata=[]
-      for(let key in response.data){
-         fetchdata.push({...response.data[key],id:key})
     
-         }
-         dispatch(mailaction.repalcemail(fetchdata))
-        }
          
-         
-      fetch()
-    
-    },20000)
+
+  },2000)
     
   },[])
   return (
     <>
     <MailNavbar/>
     <SideMenu/>
+
    
     </>
   )

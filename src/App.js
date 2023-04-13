@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider, useParams } from "react-router-dom";
 import ComposeMail from "./component/ComposeMail";
 import ReadMail from "./component/ReadMail";
+import Signinpage from "./component/Signin";
+import Signuppage from "./component/Signup";
 import Inbox from "./Routerpages/Inbox";
 
 
@@ -18,8 +20,16 @@ function App() {
     },{
       path:":id",
       element:<ReadMail/>
+    },
+    {
+      path:"/signin",
+      element:<Signinpage/>
+    },
+    {
+      path:"/signup",
+      element:<Signuppage/>
     }
-
+    
   ])
   
   return (

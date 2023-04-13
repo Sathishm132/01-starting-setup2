@@ -2,14 +2,19 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Emailcard from './Emailcard'
 import "./Emaillist.css"
+import Outbox from './Outbox'
 
 const EmailList = () => {
 
   const inbox=useSelector(state=>state.inboxmail);
+  const mailtype=useSelector(state=>state.mailtype);
+  
   const inboxlist=inbox.map((mail)=>(<div className='emailcard' ><Emailcard title={mail.title} 
     description={mail.content}
     id={mail.id}
-    read={mail.read}/></div>))
+    read={mail.read}
+    email={mail.mail}
+    /></div>))
   return (
     <div className='emaillist  '>
     
@@ -29,7 +34,9 @@ const EmailList = () => {
          
       </div>
       <div>
-      {inboxlist}
+      {mailtype==="Inbox"&&inboxlist}
+      {mailtype==="sent"&&<Outbox/>}
+     
       
       </div>
      

@@ -1,10 +1,12 @@
 
 import React from 'react'
-import { Button, Container, Form, Nav, Navbar } from 'react-bootstrap'
+import { Button, Container, Form, NavLink, Navbar } from 'react-bootstrap'
+
 
 
 
 const MailNavbar = () => {
+  const signin=localStorage.getItem("token")
   return (
     <>
  <Navbar className='bg-light d-flex justify-content-around' >
@@ -39,7 +41,8 @@ const MailNavbar = () => {
         <Navbar.Collapse className="justify-content-end m-2">
             
           <Navbar.Text>
-            Signed in as: <a href="#login">Mark Otto</a>
+        {!signin&&<NavLink>login</NavLink>}
+        {signin&&<NavLink>logout</NavLink>}
           </Navbar.Text>
         </Navbar.Collapse>
        
